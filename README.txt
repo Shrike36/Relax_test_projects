@@ -91,7 +91,7 @@ RESPONSE (json):
         [ 1, 2, 3 ]
     ]
 }
-
+-----------------------------------------------------------------
 RESPONSE (xml):
 <OperationResponse>
     <operationType>increasing_sequences</operationType>
