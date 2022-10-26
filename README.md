@@ -16,10 +16,10 @@ response (json)
 }
 
 response (xml)
-<OperationResponse>
-    <operationType>mean_value</operationType>
-    <result>15.857142857142856</result>
-</OperationResponse>
+OperationResponse>
+    operationType>mean_value</operationType>
+    result>15.857142857142856</result>
+/OperationResponse>
  --------------------------------------------
 2) 
 request 
