@@ -55,6 +55,7 @@ RESPONSE (json):
         [1, 2, 3, 4, 5, 7, 89]
     ]
 }
+
 -------------------------------------------------------------
 2)
 REQUEST
@@ -76,6 +77,7 @@ RESPONSE (xml):
     <result>1</result>
 </OperationResponse>
 
+-----------------------------------------------------------------
 3)
 REQUEST
 {
@@ -91,7 +93,7 @@ RESPONSE (json):
         [ 1, 2, 3 ]
     ]
 }
------------------------------------------------------------------
+
 RESPONSE (xml):
 <OperationResponse>
     <operationType>increasing_sequences</operationType>
