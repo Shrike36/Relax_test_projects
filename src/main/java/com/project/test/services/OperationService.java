@@ -1,5 +1,6 @@
 package com.project.test.services;
 
+import com.project.test.exceptions.FileException;
 import com.project.test.utils.CalcUtils;
 import com.project.test.utils.FileUtils;
 import com.project.test.utils.OperationType;
@@ -9,10 +10,10 @@ import java.util.List;
 
 public class OperationService {
 
-    public static String operation(String path, OperationType type) throws Exception{
+    public static String operation(String path, OperationType type) throws FileException {
         List<Long> numbers = FileUtils.readNumbersFromFile(path);
         if (numbers.size() == 0)
-            throw new Exception("There are no numbers in file!");
+            throw new FileException("There are no numbers in file!");
 
         JSONObject response = new JSONObject();
 
