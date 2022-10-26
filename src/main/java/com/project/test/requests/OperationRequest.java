@@ -8,6 +8,11 @@ public class OperationRequest {
 
     public OperationRequest() {}
 
+    public OperationRequest(String path, String operation) {
+        this.path = path;
+        this.operation = operation;
+    }
+
     public String getPath() {
         return path;
     }

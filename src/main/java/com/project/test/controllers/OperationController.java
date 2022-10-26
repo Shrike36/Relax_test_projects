@@ -3,28 +3,22 @@ package com.project.test.controllers;
 import com.project.test.exceptions.FileException;
 import com.project.test.requests.OperationRequest;
 import com.project.test.responses.ExceptionResponse;
+import com.project.test.responses.OperationResponse;
 import com.project.test.services.OperationService;
 import com.project.test.utils.OperationType;
-import org.json.JSONObject;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class OperationController {
-
-    @GetMapping("/")
-    public String index(){
-        return "Hi, Nick!";
-    }
-
-    @PostMapping("/operation")
-    public ResponseEntity<?> operation(@RequestBody OperationRequest operationRequest) throws FileException {
+    @GetMapping("/operation")
+    @ResponseBody
+    public OperationResponse operation(@RequestHeader("accept") String mediaType,
+                                       @RequestBody OperationRequest operationRequest)
+            throws FileException {
         String filePath = operationRequest.getPath();
         OperationType operationType = OperationType.getTypeByRequest(operationRequest.getOperation());
 
-        return new ResponseEntity<String>(OperationService.operation(filePath, operationType),
-                HttpStatus.OK);
+        return OperationService.operation(filePath, operationType);
     }
 
     @ExceptionHandler(FileException.class)

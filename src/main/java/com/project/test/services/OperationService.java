@@ -1,49 +1,41 @@
 package com.project.test.services;
 
 import com.project.test.exceptions.FileException;
+import com.project.test.responses.OperationResponse;
 import com.project.test.utils.CalcUtils;
 import com.project.test.utils.FileUtils;
 import com.project.test.utils.OperationType;
-import org.json.JSONObject;
 
 import java.util.List;
 
 public class OperationService {
 
-    public static String operation(String path, OperationType type) throws FileException {
+    public static OperationResponse operation(String path, OperationType type) throws FileException {
         List<Long> numbers = FileUtils.readNumbersFromFile(path);
         if (numbers.size() == 0)
             throw new FileException("There are no numbers in file!");
 
-        JSONObject response = new JSONObject();
-
         switch (type){
             case MAX:
-                long max = CalcUtils.findMax(numbers);
-                response.put("max_value", max);
-                return response.toString();
+                return new OperationResponse("max_value",
+                                            CalcUtils.findMax(numbers));
             case MIN:
-                long min = CalcUtils.findMin(numbers);
-                response.put("min_value", min);
-                return response.toString();
+                return new OperationResponse("min_value",
+                                            CalcUtils.findMin(numbers));
             case MEDIAN:
-                double median = CalcUtils.findMedian(numbers);
-                response.put("median_value", median);
-                return response.toString();
+                return new OperationResponse("median_value",
+                                            CalcUtils.findMedian(numbers));
             case MEAN:
-                double mean = CalcUtils.findMean(numbers);
-                response.put("mean_value", mean);
-                return response.toString();
+                return new OperationResponse("mean_value",
+                                            CalcUtils.findMean(numbers));
             case INCREASING_SEQUENCE:
-                List<List<Long>> incrSeqs = CalcUtils.findIncreasingSequences(numbers);
-                response.put("increasing_sequences", incrSeqs);
-                return response.toString();
+                return new OperationResponse("increasing_sequences",
+                                            CalcUtils.findIncreasingSequences(numbers));
             case DECREASING_SEQUENCE:
-                List<List<Long>> decrSeqs = CalcUtils.findDecreasingSequences(numbers);
-                response.put("decreasing_sequences", decrSeqs);
-                return response.toString();
+                return new OperationResponse("decreasing_sequences",
+                                            CalcUtils.findDecreasingSequences(numbers));
         }
-        return "hi";
+        throw new FileException("Cannot calc operation!");
     }
 
 }
