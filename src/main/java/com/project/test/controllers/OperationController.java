@@ -6,12 +6,16 @@ import com.project.test.responses.ExceptionResponse;
 import com.project.test.responses.OperationResponse;
 import com.project.test.services.OperationService;
 import com.project.test.utils.OperationType;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Api(description = "Main controller")
 public class OperationController {
     @GetMapping("/operation")
     @ResponseBody
+    @ApiOperation(value = "Calc operation")
     public OperationResponse operation(@RequestHeader("accept") String mediaType,
                                        @RequestBody OperationRequest operationRequest)
             throws FileException {
